@@ -55,8 +55,6 @@ export default {
       return (this.svgrx < this.svgry) ? this.svgry : this.svgrx;
     },
   },
-  mounted() {
-  },
 };
 </script>
 
