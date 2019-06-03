@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/ellipse">Ellipse</router-link>
+      <router-link to="/sliders">Sliders</router-link> |
+      <router-link to="/ellipseg">EllipseG</router-link>
     </div>
     <router-view/>
   </div>
