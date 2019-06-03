@@ -1,32 +1,21 @@
 <template>
-<div>
-<Slider xLabel="X" yLabel="Y" zLabel="Z" @x="doX" @y="doY" @z="doZ"></Slider>
 <svg xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink"
 :height="totalHeight" :width="totalWidth"
 :viewBox="`0 0 ${totalWidth} ${totalHeight}`"
 preserveAspectRatio="none">
-    <ellipse :cx="( parseInt(svgrx, 10) - svgrz ) + (parseInt(svgrz, 10) * 2)" :cy="(parseInt(svgry, 10) - svgrz) + ( parseInt(svgrz, 10) * 2 )" :rx="parseInt(svgrx, 10)" :ry="parseInt(svgry, 10)"
-    :style="`stroke:#ff0000;stroke-width:${ svgrz }px;fill:#99dcff;`"/>
+    <ellipse :cx="parseInt(svgrx, 10) + (parseInt(svgrz, 10))"
+             :cy="parseInt(svgry, 10) + ( parseInt(svgrz, 10))"
+             :rx="parseInt(svgrx, 10)"
+             :ry="parseInt(svgry, 10)"
+             :style="`stroke:#ff0000;stroke-width:${ svgrz }px;fill:#99dcff;`"/>
 </svg>
-</div>
-
 </template>
-
 <script>
-import Slider from '@/components/Slider.vue';
 
 export default {
   name: 'EllipseG',
   components: {
-    Slider,
-  },
-  data() {
-    return {
-      svgrx: 20,
-      svgry: 20,
-      svgrz: 1,
-    };
   },
   props: {
     x: Number,
@@ -34,25 +23,22 @@ export default {
     z: Number,
   },
   methods: {
-    doX(value) {
-      this.svgrx = parseInt(value, 10);
-    },
-    doY(value) {
-      this.svgry = parseInt(value, 10);
-    },
-    doZ(value) {
-      this.svgrz = parseInt(value, 10);
-    },
   },
   computed: {
+    svgrx() {
+      return this.x;
+    },
+    svgry() {
+      return this.y;
+    },
+    svgrz() {
+      return this.z;
+    },
     totalHeight() {
       return (this.svgry * 2) + (parseInt(this.svgrz, 10) * 2);
     },
     totalWidth() {
       return (this.svgrx * 2) + (parseInt(this.svgrz, 10) * 2);
-    },
-    maxBorder() {
-      return (this.svgrx < this.svgry) ? this.svgry : this.svgrx;
     },
   },
 };
@@ -64,8 +50,8 @@ export default {
   }
   svg {
     box-sizing: border-box;
-    display: block;
-    margin: auto;
+    display: inline;
+
   }
 .slider-wrapper {
   display: inline-block;
